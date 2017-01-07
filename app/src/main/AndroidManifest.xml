@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.erik.erp_hotel_industry">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light">
+
+        <activity android:name=".MainPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".product_classes.ProductPage" />
+        <activity android:name=".product_classes.Add_product" />
+        <activity
+            android:name=".product_classes.ProductDetail"
+            android:label="@string/title_activity_product_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".supplier_classes.SupplierPage" />
+        <activity android:name=".supplier_classes.Add_supplier" />
+        <activity android:name=".supplier_classes.SupplierDetail" />
+
+        <activity android:name=".orders_classes.OrdersPage" />
+        <activity android:name=".orders_classes.Add_order" />
+        <activity android:name=".orders_product_classes.Orders_product_page" />
+
+        <activity android:name=".category_classes.CategoryPage"
+            />
+        <activity android:name=".category_classes.Add_category" />
+        <activity android:name=".category_classes.CategoryDetail" />
+    </application>
+
+</manifest>

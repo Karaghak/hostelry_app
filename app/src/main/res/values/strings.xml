@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Hotel_Industry</string>
+    <string name="title_activity_product">Product</string>
+    <string name="price">Price:</string>
+    <string name="name">Name:</string>
+    <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
+    <string name="category">Category:</string>
+    <string name="supplier">Supplier: </string>
+    <string name="title_activity_product_detail">ProductDetail</string>
+    <string name="types">Types:</string>
+    <string name="price_unit">Price per unit:</string>
+    <string name="add_item">Add</string>
+    <string name="delete_item">Delete</string>
+    <string name="help">help_prueba</string>
+    <string name="action_favorite">af</string>
+    <string name="action_settings">as</string>
+    <string name="call_number">Call</string>
+</resources>

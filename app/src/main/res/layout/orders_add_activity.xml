@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@color/background_yellow">
+
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="158dp"
+        android:id="@+id/calendarOrder"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1.04"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Supplier:"
+            android:id="@+id/textViewSupplier" />
+
+        <Spinner
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerSupplier" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="select"
+            android:id="@+id/buttonOrderSelect"
+            android:onClick="loadProductSpinner"
+            android:background="@color/strong_yellow" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Product: "
+            android:id="@+id/textViewPtroduct" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerProduct"
+            android:layout_weight="0.64" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Quantity:"
+            android:id="@+id/textViewQuantity"
+            android:layout_weight="0.31" />
+
+        <EditText
+            android:layout_width="61dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextQuantity"
+            android:layout_weight="0.66"
+            android:inputType="number" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:id="@+id/buttonAdd"
+            style="@style/Widget.AppCompat.Button"
+            android:enabled="false"
+            android:background="@color/strong_yellow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.04">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Order"
+            android:id="@+id/buttonAddOrder"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/strong_yellow"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>
