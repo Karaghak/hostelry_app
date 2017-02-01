@@ -4,23 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/background_yellow">
 
-    <RelativeLayout
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="452dp">
+        android:layout_height="match_parent"
+        android:id="@+id/supplier_listView"
+        android:background="@color/background_yellow" />
 
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/supplier_listView"
-            android:background="@color/background_yellow" />
-    </RelativeLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Supplier"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:onClick="addItemPage"
-        android:background="@color/strong_yellow" />
 </LinearLayout>

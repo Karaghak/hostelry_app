@@ -13,6 +13,7 @@ import com.example.erik.erp_hotel_industry.R;
 import com.example.erik.erp_hotel_industry.adapters.OrderAdapter;
 import com.example.erik.erp_hotel_industry.menus.MenuAdd;
 import com.example.erik.erp_hotel_industry.orders_product_classes.Orders_product_page;
+import com.example.erik.erp_hotel_industry.supplier_classes.Add_supplier;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,7 +80,8 @@ public class OrdersPage extends MenuAdd {
         }
     }
 
-    public void addOrderPage(View view){
+    @Override
+    public void addItemPage(View view){
         Intent i = new Intent(getApplicationContext(), Add_order.class);
         i.putExtra("db_name", DATABASE_NAME);
         startActivity(i);
