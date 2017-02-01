@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.erik.erp_hotel_industry">
+        package="com.example.erik.erp_hotel_industry">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
     <application
@@ -36,6 +36,15 @@
             />
         <activity android:name=".category_classes.Add_category" />
         <activity android:name=".category_classes.CategoryDetail" />
+
+        <activity android:name=".DriveConnection" />
+
+        <meta-data
+            android:name="com.google.android.API_KEY"
+            android:value="AIzaSyDFc2F41v176yz0fbaBsCP30X2pM23zYMA" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

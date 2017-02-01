@@ -60,4 +60,11 @@
         android:onClick="ordersPage"
         android:background="@color/strong_yellow" />
 
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:onClick="openGoogleDrive"/>
+
 </LinearLayout>

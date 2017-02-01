@@ -12,9 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.erik.erp_hotel_industry.R;
+import com.example.erik.erp_hotel_industry.menus.MenuDelete;
 import com.example.erik.erp_hotel_industry.menus.MenuSimple;
 
-public class ProductDetail extends MenuSimple {
+public class ProductDetail extends MenuDelete {
 
     private final static String DATABASE_NAME = "ERP_DB.db";
     private SQLiteDatabase db;
@@ -35,17 +36,7 @@ public class ProductDetail extends MenuSimple {
         loadValuesEditText(editTextName, editTextCategory, editTextSupplier, editTextPrice);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         buttonModify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +90,8 @@ public class ProductDetail extends MenuSimple {
         returnToPage(view);
     }
 
-    public void deleteProduct(View view){
+    @Override
+    public void deleteItem(View view){
         Product product = getIntent().getParcelableExtra("product");
         int id = product.getId();
         String query = "DELETE FROM Product WHERE ID = ?";

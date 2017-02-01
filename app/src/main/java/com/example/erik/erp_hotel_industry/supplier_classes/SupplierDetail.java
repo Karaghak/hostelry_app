@@ -118,4 +118,6 @@ public class SupplierDetail extends MenuCall {
         }
         startActivity(callIntent);
     }
+
+
 }

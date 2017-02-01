@@ -7,28 +7,12 @@
     android:background="@color/background_yellow">
 
 
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="452dp">
-
-
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/productList"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-</RelativeLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Product"
-        android:id="@+id/addProduct"
-        android:layout_gravity="center_horizontal"
-        android:onClick="addItemPage"
-        android:background="@color/strong_yellow" />
 </LinearLayout>

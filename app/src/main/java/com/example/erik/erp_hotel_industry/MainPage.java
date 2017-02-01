@@ -1,5 +1,6 @@
 package com.example.erik.erp_hotel_industry;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ public class MainPage extends MenuSimple {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         db = new Database(this);
+
+
 
         /**
         erp_db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SUPPLIER);
@@ -63,6 +66,13 @@ public class MainPage extends MenuSimple {
         i.putExtra("db_name", DATABASE_NAME);
         startActivity(i);
     }
+
+    public void openGoogleDrive(View view){
+        Intent i = new Intent(getApplicationContext(), DriveConnection.class);
+        i.putExtra("db_name", DATABASE_NAME);
+        startActivity(i);
+    }
+
 
 
 

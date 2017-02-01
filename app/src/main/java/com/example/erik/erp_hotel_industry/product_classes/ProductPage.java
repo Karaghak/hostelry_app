@@ -28,7 +28,6 @@ public class ProductPage extends MenuAdd {
 
         // Load elements
         listView = (ListView) this.findViewById(R.id.productList);
-        button = (Button) findViewById(R.id.addProduct);
 
         // Load parameters
         Bundle b = getIntent().getExtras();
