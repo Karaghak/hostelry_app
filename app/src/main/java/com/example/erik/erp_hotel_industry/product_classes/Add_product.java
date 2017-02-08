@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class Add_product extends MenuSimple {
 
+    private SQLiteDatabase db;
     private static String DATABASE_NAME = "";
     private EditText editTextName;
     private Spinner spinnerCategory;
@@ -43,7 +44,7 @@ public class Add_product extends MenuSimple {
         if(b != null) DATABASE_NAME = b.getString("db_name");
 
         // Open database
-        final SQLiteDatabase db = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        db = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
 
         // Initialize elements
         editTextName = (EditText) findViewById(R.id.editTextName);
@@ -59,10 +60,10 @@ public class Add_product extends MenuSimple {
 
 
         // Category spinner adapter
-        createCategoryAdapter(db);
+        createCategoryAdapter();
 
         // Supplier spinner adapter
-        createSupplierAdapter(db);
+        createSupplierAdapter();
 
         // Types spinner adapter
         createTypesAdapter();
@@ -75,7 +76,7 @@ public class Add_product extends MenuSimple {
                 if(spinnerTypes.getSelectedItem().toString().equals("package")) editTextTypeQuantity.setEnabled(true
                 );
                 else{
-                    editTextTypeQuantity.setText("");
+                    editTextTypeQuantity.setText("1");
                     editTextTypeQuantity.setEnabled(false);
                 }
             }
@@ -88,13 +89,8 @@ public class Add_product extends MenuSimple {
 
         buttonAccept.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(allFieldsFilled()){
-                    insertProduct(db, editTextName.getText().toString(),
-                            spinnerCategory.getSelectedItem().toString(),
-                            spinnerTypes.getSelectedItem().toString(),
-                            Double.valueOf(editTextTypeQuantity.getText().toString()),
-                            Double.valueOf(editTextPrice.getText().toString()),
-                            spinnerSupplier.getSelectedItem().toString());
+                if(true){
+                    insertProduct();
                     returnToPage(v);
                 }
                 else{
@@ -106,20 +102,20 @@ public class Add_product extends MenuSimple {
 
     }
 
-    private void createSupplierAdapter(SQLiteDatabase db) {
+    private void createSupplierAdapter() {
         ArrayList<String> listSupplier = new ArrayList<>();
         ArrayAdapter<String> adapterSupplier = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listSupplier);
         adapterSupplier.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        loadSpinnerSupplier(db, listSupplier);
+        loadSpinnerSupplier(listSupplier);
         spinnerSupplier.setAdapter(adapterSupplier);
     }
 
-    private void createCategoryAdapter(SQLiteDatabase db) {
+    private void createCategoryAdapter() {
         ArrayList<String> listCategory = new ArrayList<>();
 
         ArrayAdapter<String> adapterCategory = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listCategory);
         adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        loadSpinnerCategory(db, listCategory);
+        loadSpinnerCategory(listCategory);
         spinnerCategory.setAdapter(adapterCategory);
     }
 
@@ -131,8 +127,7 @@ public class Add_product extends MenuSimple {
         spinnerTypes.setAdapter(adapterTypes);
     }
 
-
-    private void loadSpinnerSupplier(SQLiteDatabase db, ArrayList<String> list){
+    private void loadSpinnerSupplier(ArrayList<String> list){
         String query = "SELECT Name from Supplier";
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.moveToFirst()){
@@ -142,7 +137,7 @@ public class Add_product extends MenuSimple {
         }
     }
 
-    private void loadSpinnerCategory(SQLiteDatabase db, ArrayList<String> list){
+    private void loadSpinnerCategory(ArrayList<String> list){
         String query = "SELECT Name from Category ORDER BY Name ASC";
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.moveToFirst()){
@@ -152,27 +147,32 @@ public class Add_product extends MenuSimple {
         }
     }
 
-
-    private void insertProduct(SQLiteDatabase db, String name, String category, String type, double typeQuantity,
-                               double price, String supplierName)
+    /**
+     * Inserts the product into the database
+     */
+    private void insertProduct()
     {
         String query = "INSERT INTO Product (Name, Category, Type, Units, Price, SupplierName) VALUES (?, ?, ?, ?, ?, ?)";
         SQLiteStatement stmt = db.compileStatement(query);
         db.beginTransaction();
-        stmt.bindString(1, name);
-        stmt.bindString(2, category);
-        stmt.bindString(3, type);
-        stmt.bindDouble(4, typeQuantity);
-        stmt.bindDouble(5, price);
-        stmt.bindString(6, supplierName);
+        stmt.bindString(1, getName());
+        stmt.bindString(2, getCategory());
+        stmt.bindString(3, getType());
+        stmt.bindDouble(4, getQuantity());
+        stmt.bindDouble(5, getPrice());
+        stmt.bindString(6, getSupplier());
         stmt.execute();
         db.setTransactionSuccessful();
         db.endTransaction();
         db.close();
     }
 
+    /**
+     * Checks if all the fields are correctly filled
+     * @return true if all correct
+     */
     private boolean allFieldsFilled(){
-        if(!editTextName.getText().toString().equals("") && Double.valueOf(editTextPrice.getText().toString()) > 0
+        if(!getName().equals("") && getPrice() > 0
                 && checkType()) return true;
         return false;
     }
@@ -186,23 +186,46 @@ public class Add_product extends MenuSimple {
         return false;
     }
 
-
-
     private void returnToPage(View view){
         Intent i = new Intent(getApplicationContext(), ProductPage.class);
         i.putExtra("db_name", DATABASE_NAME);
         startActivity(i);
+        finish();
     }
 
-
-
     private void toastError(){
-        Context context = getApplicationContext();
         CharSequence text = "Some fields are not correctly filled.";
-        int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
+        Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+    private double getQuantity(){
+        String quantity = spinnerTypes.getSelectedItem().toString();
+        if(quantity.equals("kilo") || quantity.equals("unit")){
+            editTextTypeQuantity.setText("1");
+        }
+        return  Double.valueOf(editTextTypeQuantity.getText().toString());
+    }
+
+    private String getType(){
+        return spinnerTypes.getSelectedItem().toString();
+    }
+
+    private String getSupplier(){
+        return spinnerSupplier.getSelectedItem().toString();
+    }
+
+    private String getCategory(){
+        return spinnerCategory.getSelectedItem().toString();
+    }
+
+    private String getName(){
+        return editTextName.getText().toString();
+    }
+
+    private Double getPrice(){
+        return Double.valueOf(editTextPrice.getText().toString());
     }
 
 }

@@ -1,5 +1,7 @@
 package com.example.erik.erp_hotel_industry.menus;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,13 +29,18 @@ public class MenuCall extends AppCompatActivity {
             case R.id.callNumber:
                 callNumber();
                 return true;
+            case R.id.deleteItem:
+                deleteItem(this.findViewById(android.R.id.content).getRootView());
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     public void callNumber() {
+    }
 
+    public void deleteItem(View view) {
     }
 
     /*

@@ -7,6 +7,9 @@
     <item android:id="@+id/callNumber"
         android:icon="@drawable/ic_phone_forwarded_black_24dp"
         android:title="@string/call_number"
-        android:showAsAction="ifRoom"
+        app:showAsAction="always" />
+    <item android:id="@+id/deleteItem"
+        android:icon="@drawable/ic_delete_forever_black_24dp"
+        android:title="@string/delete_menu_item"
         app:showAsAction="always" />
 </menu>

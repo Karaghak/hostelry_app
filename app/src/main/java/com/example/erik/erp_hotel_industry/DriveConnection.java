@@ -154,7 +154,7 @@ public class DriveConnection extends Activity implements GoogleApiClient.Connect
 
     private void checkDriveFolders(){
         //// WARNING: USE ONLY ON DEBUG MODE
-        //deleteAll();
+        deleteAll();
         DriveFolder folder = Drive.DriveApi.getRootFolder(mGoogleApiClient);
         folder.listChildren(mGoogleApiClient).setResultCallback(childrenRetrievedCallback);
     }
@@ -304,8 +304,6 @@ public class DriveConnection extends Activity implements GoogleApiClient.Connect
                             while ( (n = bufferedInputStream.read(buffer)) > 0){
                                 outputStream.write(buffer, 0, n);
                             }
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

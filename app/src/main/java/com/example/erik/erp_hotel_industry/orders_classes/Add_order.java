@@ -269,6 +269,7 @@ public class Add_order extends MenuSimple {
         Intent i = new Intent(getApplicationContext(), OrdersPage.class);
         i.putExtra("db_name", DATABASE_NAME);
         startActivity(i);
+        finish();
     }
 
     private void isAtLeastOneProductSelected(){

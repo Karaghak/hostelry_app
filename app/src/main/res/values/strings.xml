@@ -16,4 +16,5 @@
     <string name="action_favorite">af</string>
     <string name="action_settings">as</string>
     <string name="call_number">Call</string>
+    <string name="delete_menu_item">Delete</string>
 </resources>

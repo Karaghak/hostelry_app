@@ -1,11 +1,15 @@
 package com.example.erik.erp_hotel_industry.menus;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import com.example.erik.erp_hotel_industry.R;
+import com.example.erik.erp_hotel_industry.category_classes.Category;
 
 /**
  * Created by Erik on 28/12/2016.
@@ -34,6 +38,8 @@ public class MenuDelete extends AppCompatActivity {
 
     public void deleteItem(View view) {
     }
+
+
 
     /*
     @Override

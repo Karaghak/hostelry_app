@@ -1,7 +1,6 @@
 package com.example.erik.erp_hotel_industry.supplier_classes;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,15 +14,14 @@ import android.widget.EditText;
 
 import com.example.erik.erp_hotel_industry.R;
 import com.example.erik.erp_hotel_industry.menus.MenuCall;
-import com.example.erik.erp_hotel_industry.menus.MenuSimple;
 
 /**
  * Created by Erik on 27/09/2016.
  */
 public class SupplierDetail extends MenuCall {
 
-    private EditText etName;
-    private EditText etPhoneNumber;
+    private EditText editTextName;
+    private EditText editTextPhoneNumber;
     private Button btnModify;
     private Supplier supplier;
 
@@ -44,8 +42,8 @@ public class SupplierDetail extends MenuCall {
 
 
         // Instantiating elements
-        etName = (EditText) findViewById(R.id.editTextName);
-        etPhoneNumber = (EditText) findViewById(R.id.editTextPhoneNumber);
+        editTextName = (EditText) findViewById(R.id.editTextName);
+        editTextPhoneNumber = (EditText) findViewById(R.id.editTextPhoneNumber);
         btnModify = (Button) findViewById(R.id.buttonModify);
 
         // Fill fields
@@ -63,8 +61,8 @@ public class SupplierDetail extends MenuCall {
      * Method that fill the supplier fields
      */
     private void fillFields() {
-        etName.setText(supplier.getName());
-        etPhoneNumber.setText(String.valueOf(supplier.getPhoneNumber()));
+        editTextName.setText(supplier.getName());
+        editTextPhoneNumber.setText(String.valueOf(supplier.getPhoneNumber()));
     }
 
     /**
@@ -72,8 +70,8 @@ public class SupplierDetail extends MenuCall {
      * @param view
      */
     private void updateSupplier(View view) {
-        String name = etName.getText().toString();
-        int phoneNumber = Integer.valueOf(etPhoneNumber.getText().toString());
+        String name = editTextName.getText().toString();
+        int phoneNumber = Integer.valueOf(editTextPhoneNumber.getText().toString());
         int id = supplier.getId();
 
         String query = "UPDATE Supplier" +
@@ -100,12 +98,12 @@ public class SupplierDetail extends MenuCall {
         Intent i = new Intent(getApplicationContext(), SupplierPage.class);
         i.putExtra("db_name", DATABASE_NAME);
         startActivity(i);
+        finish();
     }
 
     @Override
     public void callNumber() {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:"+etPhoneNumber.getText().toString()));
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", getTelephoneNumber(), null)));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -116,7 +114,27 @@ public class SupplierDetail extends MenuCall {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        startActivity(callIntent);
+    }
+
+    private String getTelephoneNumber(){
+        return editTextPhoneNumber.getText().toString();
+    }
+
+    @Override
+    public void deleteItem(View view) {
+        int id = supplier.getId();
+        String query = "DELETE FROM Supplier WHERE ID = ?";
+        SQLiteStatement stmt = db.compileStatement(query);
+        // Start transaction
+        db.beginTransaction();
+        stmt.bindDouble(1, id);
+        stmt.execute();
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        // End transaction
+        db.close();
+        // Open page after delete
+        returnToPage(view);
     }
 
 

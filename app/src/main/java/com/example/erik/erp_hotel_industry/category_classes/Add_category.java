@@ -73,6 +73,7 @@ public class Add_category extends MenuSimple {
         Intent i = new Intent(getApplicationContext(), CategoryPage.class);
         i.putExtra("db_name", DATABASE_NAME);
         startActivity(i);
+        finish();
     }
 
     private boolean checkFields(){

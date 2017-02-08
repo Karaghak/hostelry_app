@@ -93,7 +93,6 @@ public class CategoryDetail extends MenuDelete {
 
     @Override
     public void deleteItem(View view) {
-        Category category = getIntent().getParcelableExtra("category");
         int id = category.getId();
         String query = "DELETE FROM Category WHERE ID = ?";
         SQLiteStatement stmt = db.compileStatement(query);
@@ -113,6 +112,7 @@ public class CategoryDetail extends MenuDelete {
         Intent i = new Intent(getApplicationContext(), CategoryPage.class);
         i.putExtra("db_name", DATABASE_NAME);
         startActivity(i);
+        finish();
     }
 
     private void fillEditText() {

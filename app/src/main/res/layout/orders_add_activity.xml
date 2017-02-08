@@ -6,105 +6,124 @@
     android:weightSum="1"
     android:background="@color/background_yellow">
 
-    <CalendarView
-        android:layout_width="match_parent"
-        android:layout_height="158dp"
-        android:id="@+id/calendarOrder"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1.04"/>
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="306dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <CalendarView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Supplier:"
-            android:id="@+id/textViewSupplier" />
-
-        <Spinner
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerSupplier" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="select"
-            android:id="@+id/buttonOrderSelect"
-            android:onClick="loadProductSpinner"
-            android:background="@color/strong_yellow" />
-
+            android:id="@+id/calendarOrder"
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:layout_weight="0.99">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Product: "
-            android:id="@+id/textViewPtroduct" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerProduct"
-            android:layout_weight="0.64" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Supplier:"
+                android:id="@+id/textViewSupplier" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Product: "
+                android:id="@+id/textViewPtroduct"
+                android:layout_centerVertical="true"
+                android:layout_alignRight="@+id/textViewSupplier"
+                android:layout_alignEnd="@+id/textViewSupplier" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADD"
+                android:id="@+id/buttonAdd"
+                style="@style/Widget.AppCompat.Button"
+                android:enabled="false"
+                android:background="@color/strong_yellow"
+                android:layout_alignBottom="@+id/editTextQuantity"
+                android:layout_alignLeft="@+id/buttonOrderSelect"
+                android:layout_alignStart="@+id/buttonOrderSelect"
+                android:layout_alignTop="@+id/editTextQuantity" />
+
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerProduct"
+                android:layout_weight="1.04"
+                android:layout_alignTop="@+id/textViewPtroduct"
+                android:layout_alignLeft="@+id/spinnerSupplier"
+                android:layout_alignStart="@+id/spinnerSupplier"
+                android:layout_alignRight="@+id/spinnerSupplier"
+                android:layout_alignEnd="@+id/spinnerSupplier" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Quantity:"
+                android:id="@+id/textViewQuantity"
+                android:layout_weight="0.31"
+                android:layout_alignBaseline="@+id/buttonAdd"
+                android:layout_alignBottom="@+id/buttonAdd"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="select"
+                android:id="@+id/buttonOrderSelect"
+                android:onClick="loadProductSpinner"
+                android:background="@color/strong_yellow"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@+id/textViewSupplier" />
+
+            <EditText
+                android:id="@+id/editTextQuantity"
+                android:inputType="number"
+                android:layout_height="30dp"
+                android:layout_width="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerSupplier"
+                android:layout_width="190dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Quantity:"
-            android:id="@+id/textViewQuantity"
-            android:layout_weight="0.31" />
-
-        <EditText
-            android:layout_width="61dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextQuantity"
-            android:layout_weight="0.66"
-            android:inputType="number" />
+        android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ADD"
-            android:id="@+id/buttonAdd"
-            style="@style/Widget.AppCompat.Button"
-            android:enabled="false"
-            android:background="@color/strong_yellow" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.04">
-
-        <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Order"
             android:id="@+id/buttonAddOrder"
             android:layout_gravity="center_horizontal"
-            android:background="@color/strong_yellow"
-            android:layout_weight="1" />
+            android:background="@color/strong_yellow" />
     </LinearLayout>
 
 </LinearLayout>

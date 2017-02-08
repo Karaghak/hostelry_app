@@ -94,6 +94,7 @@ public class Add_supplier extends MenuSimple {
         Intent i = new Intent(getApplicationContext(), SupplierPage.class);
         i.putExtra("db_name", DATABASE_NAME);
         startActivity(i);
+        finish();
     }
 
     private void toastError(){
